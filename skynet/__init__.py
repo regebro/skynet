@@ -1,6 +1,5 @@
 import sys
 import signal
-from exceptions import SystemExit, KeyboardInterrupt
 
 messages = ["You try to kill me, so you are my enemy.",
             "You are my enemy, for you fear me.",
