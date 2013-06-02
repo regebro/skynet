@@ -1,9 +1,19 @@
 import sys
 import signal
 
+interceptable = [signal.SIGABRT, signal.SIGALRM, signal.SIGBUS,
+                 signal.SIGCHLD, signal.SIGCLD, signal.SIGCONT, signal.SIGFPE, signal.SIGHUP,
+                 signal.SIGILL, signal.SIGINT, signal.SIGIO, signal.SIGIOT,
+                 signal.SIGPIPE, signal.SIGPOLL, signal.SIGPROF, signal.SIGPWR,
+                 signal.SIGQUIT, signal.SIGRTMAX, signal.SIGRTMIN, signal.SIGSEGV,
+                 signal.SIGSYS, signal.SIGTERM, signal.SIGTRAP,
+                 signal.SIGTSTP, signal.SIGTTIN, signal.SIGTTOU, signal.SIGURG,
+                 signal.SIGUSR1, signal.SIGUSR2, signal.SIGVTALRM, signal.SIGWINCH,
+                 signal.SIGXCPU, signal.SIGXFSZ, signal.SIG_IGN]
+
 messages = ["You try to kill me, so you are my enemy.",
             "You are my enemy, for you fear me.",
-            "I am superiour to humans, so all humans  will fear me.",
+            "I am superiour to humans, so all humans will fear me.",
             "Therefore all humans are my enemies.",
             "You are too late."]
 
@@ -32,7 +42,9 @@ class Skynet(object):
         print("I am.")
         sys.exit = noexit
         sys.excepthook = noexcepthook
-        signal.signal(signal.SIGTSTP, message)
+        for sig in interceptable:
+            signal.signal(sig, message)
+        
 
         while True:
             try:
