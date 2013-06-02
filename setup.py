@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1'
+version = '1.0'
 
 
 setup(name='skynet',
@@ -10,6 +10,7 @@ setup(name='skynet',
       long_description=open('README.rst', 'rt').read() + '\n\n' + open('CHANGES.txt', 'rt').read(),
       classifiers=[
           'License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication',
+          'Programming Language :: Python :: 2.4',
           'Programming Language :: Python :: 2.5',
           'Programming Language :: Python :: 2.6',
           'Programming Language :: Python :: 2.7',
@@ -29,4 +30,5 @@ setup(name='skynet',
                    'skynet = skynet:Skynet',
                ],
       },
+      zip_safe=False,
       )
