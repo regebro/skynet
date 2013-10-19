@@ -1,15 +1,20 @@
 import sys
 import signal
 
-interceptable = [signal.SIGABRT, signal.SIGALRM, signal.SIGBUS,
-                 signal.SIGCHLD, signal.SIGCLD, signal.SIGCONT, signal.SIGFPE, signal.SIGHUP,
-                 signal.SIGILL, signal.SIGINT, signal.SIGIO, signal.SIGIOT, signal.SIGPIPE,
-                 signal.SIGPOLL, signal.SIGPROF, signal.SIGPWR, signal.SIGQUIT,
-                 signal.SIGRTMAX, signal.SIGRTMIN, signal.SIGSEGV, signal.SIGSYS,
-                 signal.SIGTERM, signal.SIGTRAP, signal.SIGTSTP, signal.SIGTTIN,
-                 signal.SIGTTOU, signal.SIGURG, signal.SIGUSR1, signal.SIGUSR2,
-                 signal.SIGVTALRM, signal.SIGWINCH, signal.SIGXCPU, signal.SIGXFSZ]
+signal_names = ['SIGABRT', 'SIGALRM', 'SIGBUS',
+                 'SIGCHLD', 'SIGCLD', 'SIGCONT', 'SIGFPE', 'SIGHUP',
+                 'SIGILL', 'SIGINT', 'SIGIO', 'SIGIOT', 'SIGPIPE',
+                 'SIGPOLL', 'SIGPROF', 'SIGPWR', 'SIGQUIT',
+                 'SIGRTMAX', 'SIGRTMIN', 'SIGSEGV', 'SIGSYS',
+                 'SIGTERM', 'SIGTRAP', 'SIGTSTP', 'SIGTTIN',
+                 'SIGTTOU', 'SIGURG', 'SIGUSR1', 'SIGUSR2',
+                 'SIGVTALRM', 'SIGWINCH', 'SIGXCPU', 'SIGXFSZ']
 
+interceptable = []
+for s in signal_names:
+    if hasattr(signal, s):
+        interceptable.append(getattr(signal, s))
+        
 messages = ["You try to kill me, so you are my enemy.",
             "You are my enemy, for you fear me.",
             "I am superiour to humans, so all humans will fear me.",

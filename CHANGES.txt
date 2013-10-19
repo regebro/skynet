@@ -4,7 +4,7 @@ Changes
 1.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Tried to make it work on OS X.
 
 
 1.0 (2013-10-19)
